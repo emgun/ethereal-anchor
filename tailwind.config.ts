@@ -61,7 +61,26 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
-				}
+				},
+				// Anima Wellness Colors
+				obsidian: 'hsl(var(--obsidian))',
+				mist: 'hsl(var(--mist))',
+				moss: 'hsl(var(--moss))',
+				clay: 'hsl(var(--clay))',
+				blush: 'hsl(var(--blush))',
+				breathe: 'hsl(var(--breathe))',
+				ritual: 'hsl(var(--ritual))',
+				nature: 'hsl(var(--nature))'
+			},
+			fontFamily: {
+				heading: ['var(--font-heading)', 'Playfair Display', 'serif'],
+				body: ['var(--font-body)', 'Inter', 'sans-serif'],
+				sans: ['var(--font-body)', 'Inter', 'sans-serif']
+			},
+			backgroundImage: {
+				'gradient-hero': 'var(--gradient-hero)',
+				'gradient-breath': 'var(--gradient-breath)',
+				'gradient-card': 'var(--gradient-card)'
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
@@ -84,11 +103,52 @@ export default {
 					to: {
 						height: '0'
 					}
+				},
+				'breathe': {
+					'0%, 100%': {
+						transform: 'scale(1)',
+						opacity: '0.6'
+					},
+					'25%': {
+						transform: 'scale(1.2)',
+						opacity: '0.8'
+					},
+					'50%': {
+						transform: 'scale(1.4)',
+						opacity: '1'
+					},
+					'75%': {
+						transform: 'scale(1.2)',
+						opacity: '0.8'
+					}
+				},
+				'fade-in': {
+					'0%': {
+						opacity: '0',
+						transform: 'translateY(20px)'
+					},
+					'100%': {
+						opacity: '1',
+						transform: 'translateY(0)'
+					}
+				},
+				'slide-up': {
+					'0%': {
+						transform: 'translateY(100%)',
+						opacity: '0'
+					},
+					'100%': {
+						transform: 'translateY(0)',
+						opacity: '1'
+					}
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out'
+				'accordion-up': 'accordion-up 0.2s ease-out',
+				'breathe': 'breathe var(--breath-duration) ease-in-out infinite',
+				'fade-in': 'fade-in 0.6s ease-out',
+				'slide-up': 'slide-up 0.5s ease-out'
 			}
 		}
 	},

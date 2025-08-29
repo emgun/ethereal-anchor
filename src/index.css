@@ -2,41 +2,65 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+/* Anima Wellness App Design System */
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* Core Anima Palette */
+    --obsidian: 0 0% 10.2%; /* #1A1A1A */
+    --mist: 60 20% 96.3%; /* #F7F6F2 */
+    --moss: 90 12% 49.8%; /* #7E8A72 */
+    --clay: 20 35% 63.3%; /* #C89A7B */
+    --blush: 2 45% 83.1%; /* #E7B9B8 */
+    
+    /* Semantic Tokens */
+    --background: var(--mist);
+    --foreground: var(--obsidian);
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card: var(--mist);
+    --card-foreground: var(--obsidian);
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover: var(--mist);
+    --popover-foreground: var(--obsidian);
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    --primary: var(--obsidian);
+    --primary-foreground: var(--mist);
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --secondary: var(--moss);
+    --secondary-foreground: var(--mist);
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: 60 8% 90%;
+    --muted-foreground: 0 0% 45.1%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent: var(--clay);
+    --accent-foreground: var(--mist);
 
     --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive-foreground: var(--mist);
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --border: 60 10% 85%;
+    --input: 60 10% 85%;
+    --ring: var(--obsidian);
 
-    --radius: 0.5rem;
+    /* Wellness-specific tokens */
+    --breathe: var(--blush);
+    --ritual: var(--clay);
+    --nature: var(--moss);
+    
+    /* Gradients */
+    --gradient-hero: linear-gradient(135deg, hsl(var(--obsidian) / 0.8), hsl(var(--obsidian) / 0.6));
+    --gradient-breath: radial-gradient(circle, hsl(var(--blush) / 0.3), hsl(var(--blush) / 0.1));
+    --gradient-card: linear-gradient(145deg, hsl(var(--mist)), hsl(60 15% 93%));
+    
+    /* Typography */
+    --font-heading: 'Playfair Display', serif;
+    --font-body: 'Inter', sans-serif;
+    
+    /* Animations */
+    --breath-duration: 4s;
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    
+    --radius: 1rem;
 
     --sidebar-background: 0 0% 98%;
 
@@ -56,33 +80,40 @@ All colors MUST be HSL.
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
+    --obsidian: 0 0% 7%; /* Darker for dark mode */
+    --mist: 60 8% 8%; /* Dark background */
+    --moss: 90 15% 60%; /* Brighter for contrast */
+    --clay: 20 40% 70%; /* Brighter for contrast */
+    --blush: 2 50% 75%; /* Brighter for contrast */
+    
+    --background: var(--mist);
+    --foreground: 60 20% 95%;
 
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
+    --card: 60 5% 10%;
+    --card-foreground: 60 20% 95%;
 
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
+    --popover: 60 5% 10%;
+    --popover-foreground: 60 20% 95%;
 
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
+    --primary: 60 20% 95%;
+    --primary-foreground: var(--obsidian);
 
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
+    --secondary: var(--moss);
+    --secondary-foreground: var(--mist);
 
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
+    --muted: 60 5% 15%;
+    --muted-foreground: 60 8% 65%;
 
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
+    --accent: var(--clay);
+    --accent-foreground: var(--mist);
 
     --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive-foreground: 60 20% 95%;
 
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
+    --border: 60 5% 20%;
+    --input: 60 5% 20%;
+    --ring: 60 20% 90%;
+    
     --sidebar-background: 240 5.9% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;
     --sidebar-primary: 224.3 76.3% 48%;
@@ -100,6 +131,43 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-body;
+  }
+  
+  /* Typography */
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading;
+  }
+  
+  /* Scrollbar styling */
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    @apply bg-muted/20;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    @apply bg-muted-foreground/30 rounded-full;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-muted-foreground/50;
+  }
+  
+  /* Line clamp utility */
+  .line-clamp-2 {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+  }
+  
+  .line-clamp-3 {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
   }
 }
