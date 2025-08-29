@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react';
 import { X, Pause, Play } from 'lucide-react';
 import { BreathPattern } from '@/types';
 import { BreathOrb } from './BreathOrb';
+import { ThreeBreathOrb } from './ThreeBreathOrb';
+import { useRitual } from '@/context/RitualContext';
 
 interface BreathSessionProps {
   pattern: BreathPattern;
@@ -14,6 +16,7 @@ export const BreathSession = ({ pattern, onEnd }: BreathSessionProps) => {
   const [phase, setPhase] = useState<'inhale' | 'hold1' | 'exhale' | 'hold2'>('inhale');
   const [timeLeft, setTimeLeft] = useState(0);
   const [isStarted, setIsStarted] = useState(false);
+  const { addActivity } = useRitual();
 
   useEffect(() => {
     if (!isActive || !pattern) return;
@@ -83,6 +86,7 @@ export const BreathSession = ({ pattern, onEnd }: BreathSessionProps) => {
     setIsStarted(false);
     setCurrentCycle(0);
     setPhase('inhale');
+    addActivity('breathwork');
     onEnd();
   };
 
@@ -157,15 +161,20 @@ export const BreathSession = ({ pattern, onEnd }: BreathSessionProps) => {
         ) : (
           // Active session
           <>
-            <div className="mb-8">
-              <BreathOrb 
-                size="xl" 
-                isActive={isActive}
-                pattern={pattern.pattern}
-                showTimer={true}
-                timeLeft={timeLeft}
-                className="mx-auto"
-              />
+            <div className="mb-8 flex items-center justify-center">
+              <div className="hidden sm:block">
+                <ThreeBreathOrb isActive={isActive} size={320} />
+              </div>
+              <div className="sm:hidden">
+                <BreathOrb 
+                  size="xl" 
+                  isActive={isActive}
+                  pattern={pattern.pattern}
+                  showTimer={true}
+                  timeLeft={timeLeft}
+                  className="mx-auto"
+                />
+              </div>
             </div>
 
             <div className="mb-8 space-y-2">

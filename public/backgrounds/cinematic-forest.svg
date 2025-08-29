@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
+  <defs>
+    <linearGradient id="sky" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0%" stop-color="#0d1b16"/>
+      <stop offset="55%" stop-color="#0a1511"/>
+      <stop offset="100%" stop-color="#090f0d"/>
+    </linearGradient>
+    <radialGradient id="moon" cx="0.75" cy="0.2" r="0.15">
+      <stop offset="0%" stop-color="#e8fff2"/>
+      <stop offset="100%" stop-color="#e8fff2" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="mountain1" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#18382b"/>
+      <stop offset="100%" stop-color="#132a21"/>
+    </linearGradient>
+    <linearGradient id="mountain2" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#10261d"/>
+      <stop offset="100%" stop-color="#0c1e17"/>
+    </linearGradient>
+    <linearGradient id="ground" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0%" stop-color="#0a1813"/>
+      <stop offset="100%" stop-color="#070e0b"/>
+    </linearGradient>
+    <filter id="soft" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="28"/>
+    </filter>
+  </defs>
+  <rect width="1600" height="900" fill="url(#sky)"/>
+  <rect width="1600" height="900" fill="url(#moon)"/>
+  <!-- distant mountains -->
+  <path d="M0,520 C120,460 220,460 380,520 C520,570 640,560 760,520 C880,480 980,470 1120,520 C1260,570 1400,560 1600,520 L1600,900 L0,900 Z" fill="url(#mountain1)" opacity="0.75"/>
+  <!-- mid mountains -->
+  <path d="M0,600 C180,540 300,560 480,610 C640,660 860,650 1020,600 C1180,550 1320,560 1600,600 L1600,900 L0,900 Z" fill="url(#mountain2)"/>
+  <!-- ground -->
+  <path d="M0,760 C240,740 420,770 700,800 C980,830 1260,810 1600,820 L1600,900 L0,900 Z" fill="url(#ground)"/>
+  <!-- trees silhouettes -->
+  <g fill="#0b241a" opacity="0.9">
+    <path d="M120,730 l20,-60 l20,60 h-12 l12,36 h-40 l12,-36 z"/>
+    <path d="M260,735 l18,-54 l18,54 h-10 l10,30 h-36 l10,-30 z"/>
+    <path d="M420,742 l22,-66 l22,66 h-12 l12,34 h-44 l12,-34 z"/>
+    <path d="M980,738 l18,-56 l18,56 h-10 l10,28 h-36 l10,-28 z"/>
+    <path d="M1120,744 l20,-62 l20,62 h-12 l12,34 h-40 l12,-34 z"/>
+    <path d="M1320,736 l22,-60 l22,60 h-12 l12,30 h-44 l12,-30 z"/>
+  </g>
+  <!-- mist glows -->
+  <ellipse cx="-60" cy="840" rx="260" ry="160" fill="#7be0a1" opacity="0.25" filter="url(#soft)"/>
+  <ellipse cx="1520" cy="160" rx="280" ry="220" fill="#66c0a0" opacity="0.18" filter="url(#soft)"/>
+</svg>
+
+

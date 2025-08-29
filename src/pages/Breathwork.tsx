@@ -3,6 +3,7 @@ import { breathPatterns } from '@/data/seedData';
 import { BreathPattern } from '@/types';
 import { PatternCard } from '@/components/PatternCard';
 import { BreathSession } from '@/components/BreathSession';
+import { CinematicBackground } from '@/components/CinematicBackground';
 
 const Breathwork = () => {
   const [selectedPattern, setSelectedPattern] = useState<BreathPattern | null>(null);
@@ -23,16 +24,12 @@ const Breathwork = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background via-background to-muted/10 pb-20">
-      {/* Header */}
-      <div className="px-6 pt-12 pb-8">
-        <div className="max-w-sm mx-auto text-center mb-8">
-          <h1 className="font-heading text-3xl font-light text-foreground mb-3">
-            Breathwork
-          </h1>
-          <p className="text-muted-foreground font-body leading-relaxed">
-            Connect with your breath through ancient patterns designed to center your mind and restore balance
-          </p>
+    <div className="min-h-screen bg-background/10 pb-20">
+      {/* Minimal header without background */}
+      <div className="px-6 pt-8 pb-6">
+        <div className="max-w-sm mx-auto text-center mb-2">
+          <h1 className="font-heading text-2xl font-light text-foreground mb-1">Breathwork</h1>
+          <p className="text-muted-foreground font-body">Breathe in. Breathe out.</p>
         </div>
       </div>
 

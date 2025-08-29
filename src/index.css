@@ -125,6 +125,33 @@
     --sidebar-border: 240 3.7% 15.9%;
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
+/* end of file */
+
+/* World Themes */
+@layer base {
+  .theme-forest {
+    --gradient-hero: linear-gradient(135deg, hsl(120 15% 16% / 0.9), hsl(120 12% 12% / 0.8));
+    --gradient-breath: radial-gradient(circle, hsl(2 45% 83% / 0.25), hsl(120 20% 20% / 0.15));
+    --accent: var(--moss);
+  }
+  .theme-ocean {
+    --gradient-hero: linear-gradient(135deg, hsl(200 70% 18% / 0.9), hsl(204 60% 16% / 0.8));
+    --gradient-breath: radial-gradient(circle, hsl(200 80% 70% / 0.25), hsl(204 60% 16% / 0.15));
+    --accent: 200 80% 65%;
+    --foreground: 200 20% 96%;
+    --border: 200 40% 50% / 0.35;
+  }
+  .theme-mycelium { /* legacy alias */ }
+  .theme-desert {
+    --gradient-hero: linear-gradient(135deg, hsl(28 40% 60% / 0.35), hsl(28 30% 40% / 0.25));
+    --gradient-breath: radial-gradient(circle, hsl(40 70% 80% / 0.25), hsl(28 30% 40% / 0.15));
+    --accent: 28 60% 60%;
+  }
+}
+
+@keyframes orbShimmer {
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  50% { transform: translate3d(-3%, 2%, 0); }
 }
 
 @layer base {
@@ -133,7 +160,7 @@
   }
 
   body {
-    @apply bg-background text-foreground font-body;
+    @apply bg-background/10 text-foreground font-body;
   }
   
   /* Typography */
@@ -202,4 +229,33 @@
     from { box-shadow: 0 0 20px hsl(var(--blush) / 0.3); }
     to { box-shadow: 0 0 40px hsl(var(--blush) / 0.6), 0 0 80px hsl(var(--blush) / 0.3); }
   }
+}
+
+@layer components {
+  .glass { 
+    background-color: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.18);
+    backdrop-filter: blur(12px) saturate(115%);
+    -webkit-backdrop-filter: blur(12px) saturate(115%);
+    box-shadow: 0 8px 40px rgba(0,0,0,0.25);
+  }
+  .glass-dark {
+    background-color: rgba(10,10,10,0.3);
+    border: 1px solid rgba(255,255,255,0.12);
+  }
+
+  /* Subtle breathing glow for surfaces on interaction */
+  .glass:hover, .glass:focus-visible {
+    animation: ambientBreathe 10s ease-in-out infinite;
+  }
+}
+
+@keyframes ambientBreathe {
+  0%, 100% { transform: scale(1) translateY(0); box-shadow: 0 8px 40px rgba(0,0,0,0.25); }
+  50% { transform: scale(1.015) translateY(-2px); box-shadow: 0 12px 48px rgba(0,0,0,0.3); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .glass:hover, .glass:focus-visible { animation: none; }
+}
 }

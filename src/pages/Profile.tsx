@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { User, Bell, Download, Palette, Clock } from 'lucide-react';
 import { currentUser } from '@/data/seedData';
+import { useTheme } from '@/context/ThemeContext';
 
 const Profile = () => {
   const [user, setUser] = useState(currentUser);
@@ -12,6 +13,7 @@ const Profile = () => {
     morningReminderTime: user.morningReminderTime || '',
     eveningReminderTime: user.eveningReminderTime || ''
   });
+  const { world, setWorld, isDark, toggleDark } = useTheme();
 
   const handleSave = () => {
     setUser({ ...user, ...formData });
@@ -40,7 +42,7 @@ const Profile = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background pb-20">
+    <div className="min-h-screen bg-background/10 pb-20">
       {/* Header */}
       <div className="px-6 pt-8 pb-6">
         <h1 className="font-heading text-2xl font-semibold text-foreground mb-2">
@@ -53,7 +55,7 @@ const Profile = () => {
 
       {/* Profile Card */}
       <div className="px-6 mb-6">
-        <div className="bg-gradient-card rounded-3xl p-6 border border-border/20">
+        <div className="glass rounded-3xl p-6">
           <div className="flex items-center justify-between mb-6">
             <div className="flex items-center gap-4">
               <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center">
@@ -101,7 +103,7 @@ const Profile = () => {
         
         <div className="space-y-4">
           {/* Name */}
-          <div className="bg-card rounded-2xl p-4 border border-border/20">
+          <div className="glass rounded-2xl p-4">
             <label className="flex items-center justify-between">
               <span className="font-medium text-foreground text-sm">Name</span>
               {isEditing ? (
@@ -118,29 +120,26 @@ const Profile = () => {
           </div>
 
           {/* Theme */}
-          <div className="bg-card rounded-2xl p-4 border border-border/20">
+          <div className="glass rounded-2xl p-4">
             <label className="flex items-center justify-between">
               <div className="flex items-center gap-2">
                 <Palette className="h-4 w-4 text-muted-foreground" />
                 <span className="font-medium text-foreground text-sm">Theme</span>
               </div>
-              {isEditing ? (
-                <select
-                  value={formData.theme}
-                  onChange={(e) => setFormData(prev => ({ ...prev, theme: e.target.value as 'light' | 'dark' }))}
-                  className="px-3 py-1 bg-muted border border-border rounded text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-primary/20"
-                >
-                  <option value="light">Light</option>
-                  <option value="dark">Dark</option>
-                </select>
-              ) : (
-                <span className="text-muted-foreground text-sm capitalize">{user.theme}</span>
-              )}
+              <select
+                value={world}
+                onChange={(e) => setWorld(e.target.value as any)}
+                className="px-3 py-1 bg-muted border border-border rounded text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-primary/20"
+              >
+                <option value="forest">Forest</option>
+                <option value="ocean">Ocean</option>
+                <option value="desert">Desert</option>
+              </select>
             </label>
           </div>
 
           {/* Timezone */}
-          <div className="bg-card rounded-2xl p-4 border border-border/20">
+          <div className="glass rounded-2xl p-4">
             <label className="flex items-center justify-between">
               <div className="flex items-center gap-2">
                 <Clock className="h-4 w-4 text-muted-foreground" />
@@ -164,7 +163,7 @@ const Profile = () => {
           </div>
 
           {/* Reminders */}
-          <div className="bg-card rounded-2xl p-4 border border-border/20">
+          <div className="glass rounded-2xl p-4">
             <div className="flex items-center gap-2 mb-3">
               <Bell className="h-4 w-4 text-muted-foreground" />
               <span className="font-medium text-foreground text-sm">Daily Reminders</span>

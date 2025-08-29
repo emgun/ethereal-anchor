@@ -2,11 +2,13 @@ import { useState } from 'react';
 import { Clock, Users, ArrowLeft, Heart } from 'lucide-react';
 import { recipes } from '@/data/seedData';
 import { Recipe } from '@/types';
+import { useRitual } from '@/context/RitualContext';
 
 const Recipes = () => {
   const [selectedRecipe, setSelectedRecipe] = useState<Recipe | null>(null);
   const [selectedIntent, setSelectedIntent] = useState<string>('All');
   const [savedRecipes, setSavedRecipes] = useState<string[]>([]);
+  const { addActivity } = useRitual();
 
   const intents = ['All', 'Calm', 'Focus', 'Energy', 'Clarity', 'Grounding'];
   
@@ -20,11 +22,12 @@ const Recipes = () => {
         ? prev.filter(id => id !== recipeId)
         : [...prev, recipeId]
     );
+    addActivity('recipe');
   };
 
   if (selectedRecipe) {
     return (
-      <div className="min-h-screen bg-background pb-20">
+      <div className="min-h-screen bg-background/10 pb-20">
         {/* Header */}
         <div className="px-6 pt-8 pb-4">
           <button
@@ -38,7 +41,7 @@ const Recipes = () => {
 
         {/* Recipe Hero */}
         <div className="px-6 mb-6">
-          <div className="bg-gradient-card rounded-3xl p-6 border border-border/20">
+          <div className="glass rounded-3xl p-6">
             <div className="flex items-start justify-between mb-4">
               <div className="flex-1">
                 <h1 className="font-heading text-2xl font-semibold text-foreground mb-2">
@@ -77,7 +80,7 @@ const Recipes = () => {
 
         {/* Ingredients */}
         <div className="px-6 mb-6">
-          <div className="bg-card rounded-2xl p-6 border border-border/20">
+          <div className="glass rounded-2xl p-6">
             <h3 className="font-heading text-lg font-medium text-foreground mb-4">
               Ingredients
             </h3>
@@ -94,7 +97,7 @@ const Recipes = () => {
 
         {/* Steps */}
         <div className="px-6 mb-6">
-          <div className="bg-card rounded-2xl p-6 border border-border/20">
+          <div className="glass rounded-2xl p-6">
             <h3 className="font-heading text-lg font-medium text-foreground mb-4">
               Preparation
             </h3>
@@ -129,7 +132,7 @@ const Recipes = () => {
   }
 
   return (
-    <div className="min-h-screen bg-background pb-20">
+    <div className="min-h-screen bg-background/10 pb-20">
       {/* Header */}
       <div className="px-6 pt-8 pb-6">
         <h1 className="font-heading text-2xl font-semibold text-foreground mb-2">
@@ -166,7 +169,7 @@ const Recipes = () => {
             <div 
               key={recipe.id} 
               onClick={() => setSelectedRecipe(recipe)}
-              className="bg-card rounded-2xl p-4 border border-border/20 cursor-pointer hover:bg-card/80 transition-colors duration-200"
+              className="glass rounded-2xl p-4 cursor-pointer hover:bg-white/10 transition-colors duration-200"
             >
               <div className="flex items-start justify-between mb-3">
                 <div className="flex-1">

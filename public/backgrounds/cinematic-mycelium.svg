@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
+  <defs>
+    <linearGradient id="sky" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0%" stop-color="#1a0e1e"/>
+      <stop offset="55%" stop-color="#140b17"/>
+      <stop offset="100%" stop-color="#0f0812"/>
+    </linearGradient>
+    <radialGradient id="sporeGlow" cx="0.82" cy="0.22" r="0.18">
+      <stop offset="0%" stop-color="#f3ccff"/>
+      <stop offset="100%" stop-color="#f3ccff" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="ridge1" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#3a1d4a"/>
+      <stop offset="100%" stop-color="#2a1437"/>
+    </linearGradient>
+    <linearGradient id="ridge2" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#281134"/>
+      <stop offset="100%" stop-color="#1f0f29"/>
+    </linearGradient>
+    <filter id="soft" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="28"/>
+    </filter>
+  </defs>
+  <rect width="1600" height="900" fill="url(#sky)"/>
+  <rect width="1600" height="900" fill="url(#sporeGlow)"/>
+  <!-- distant fungal ridges -->
+  <path d="M0,560 C180,520 320,540 520,580 C760,630 980,620 1200,580 C1380,550 1500,560 1600,560 L1600,900 L0,900 Z" fill="url(#ridge1)" opacity="0.85"/>
+  <!-- mid ridge with caps -->
+  <path d="M0,700 C240,680 420,700 700,730 C980,760 1240,740 1600,750 L1600,900 L0,900 Z" fill="url(#ridge2)"/>
+  <g fill="#411b57" opacity="0.95">
+    <ellipse cx="240" cy="700" rx="28" ry="10"/>
+    <rect x="236" y="700" width="8" height="26" rx="3"/>
+    <ellipse cx="520" cy="712" rx="38" ry="12"/>
+    <rect x="516" y="712" width="8" height="28" rx="3"/>
+    <ellipse cx="980" cy="720" rx="30" ry="10"/>
+    <rect x="976" y="720" width="8" height="24" rx="3"/>
+    <ellipse cx="1320" cy="708" rx="32" ry="11"/>
+    <rect x="1316" y="708" width="8" height="26" rx="3"/>
+  </g>
+  <!-- spore glows -->
+  <ellipse cx="-40" cy="820" rx="260" ry="160" fill="#f0a6ff" opacity="0.22" filter="url(#soft)"/>
+  <ellipse cx="1520" cy="160" rx="280" ry="220" fill="#b86cff" opacity="0.18" filter="url(#soft)"/>
+</svg>
+
+

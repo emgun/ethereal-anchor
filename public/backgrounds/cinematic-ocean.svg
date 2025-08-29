@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
+  <defs>
+    <linearGradient id="sky" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0%" stop-color="#0a1b2a"/>
+      <stop offset="55%" stop-color="#081621"/>
+      <stop offset="100%" stop-color="#070e15"/>
+    </linearGradient>
+    <radialGradient id="sun" cx="0.8" cy="0.18" r="0.18">
+      <stop offset="0%" stop-color="#bfe9ff"/>
+      <stop offset="100%" stop-color="#bfe9ff" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="sea1" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0%" stop-color="#0a2c44"/>
+      <stop offset="100%" stop-color="#082236"/>
+    </linearGradient>
+    <linearGradient id="sea2" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0%" stop-color="#09263a"/>
+      <stop offset="100%" stop-color="#071d2d"/>
+    </linearGradient>
+    <filter id="soft" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="28"/>
+    </filter>
+  </defs>
+  <rect width="1600" height="900" fill="url(#sky)"/>
+  <rect width="1600" height="900" fill="url(#sun)"/>
+  <!-- distant waves -->
+  <path d="M0,560 C200,540 380,560 640,580 C920,600 1180,590 1600,600 L1600,900 L0,900 Z" fill="url(#sea1)" opacity="0.85"/>
+  <!-- mid waves -->
+  <path d="M0,680 C220,660 480,680 760,700 C1040,720 1300,710 1600,720 L1600,900 L0,900 Z" fill="url(#sea2)"/>
+  <!-- specular highlights -->
+  <g opacity="0.25" fill="#a2e9ff">
+    <path d="M180,720 c40,-8 60,-8 120,0 c-60,10 -80,10 -120,0 z"/>
+    <path d="M760,740 c50,-10 80,-10 140,0 c-60,12 -90,12 -140,0 z"/>
+    <path d="M1240,710 c40,-8 70,-8 120,0 c-60,10 -80,10 -120,0 z"/>
+  </g>
+  <!-- near wave crest -->
+  <path d="M0,760 C260,750 520,760 820,780 C1100,800 1320,805 1600,810 L1600,900 L0,900 Z" fill="#071a28"/>
+  <!-- glows -->
+  <ellipse cx="-40" cy="820" rx="240" ry="160" fill="#70d6ff" opacity="0.2" filter="url(#soft)"/>
+  <ellipse cx="1520" cy="160" rx="280" ry="220" fill="#2e95c7" opacity="0.18" filter="url(#soft)"/>
+</svg>
+
+

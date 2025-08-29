@@ -27,7 +27,7 @@ const Plants = () => {
     const pairedRecipes = getPairedRecipes(selectedPlant.id);
     
     return (
-      <div className="min-h-screen bg-background pb-20">
+      <div className="min-h-screen bg-background/10 pb-20">
         {/* Header */}
         <div className="px-6 pt-8 pb-4">
           <button
@@ -41,7 +41,7 @@ const Plants = () => {
 
         {/* Plant Hero */}
         <div className="px-6 mb-6">
-          <div className="bg-gradient-card rounded-3xl p-6 border border-border/20">
+          <div className="glass rounded-3xl p-6">
             <div className="mb-4">
               <h1 className="font-heading text-2xl font-semibold text-foreground mb-1">
                 {selectedPlant.name}
@@ -61,7 +61,7 @@ const Plants = () => {
 
         {/* Benefits */}
         <div className="px-6 mb-6">
-          <div className="bg-card rounded-2xl p-6 border border-border/20">
+          <div className="glass rounded-2xl p-6">
             <h3 className="font-heading text-lg font-medium text-foreground mb-4">
               Benefits
             </h3>
@@ -78,7 +78,7 @@ const Plants = () => {
 
         {/* Folklore */}
         <div className="px-6 mb-6">
-          <div className="bg-card rounded-2xl p-6 border border-border/20">
+          <div className="glass rounded-2xl p-6">
             <h3 className="font-heading text-lg font-medium text-foreground mb-3">
               Traditional Wisdom
             </h3>
@@ -90,7 +90,7 @@ const Plants = () => {
 
         {/* Safety */}
         <div className="px-6 mb-6">
-          <div className="bg-card rounded-2xl p-6 border border-border/20">
+          <div className="glass rounded-2xl p-6">
             <h3 className="font-heading text-lg font-medium text-foreground mb-3">
               Safety Notes
             </h3>
@@ -103,7 +103,7 @@ const Plants = () => {
         {/* Paired Recipes */}
         {pairedRecipes.length > 0 && (
           <div className="px-6">
-            <div className="bg-card rounded-2xl p-6 border border-border/20">
+            <div className="glass rounded-2xl p-6">
               <h3 className="font-heading text-lg font-medium text-foreground mb-4">
                 Pair with Recipe
               </h3>
@@ -118,7 +118,7 @@ const Plants = () => {
                       <span className="px-2 py-1 bg-accent/20 text-accent rounded text-xs">
                         {recipe.intent}
                       </span>
-                      <button className="w-6 h-6 bg-primary/10 text-primary rounded-full flex items-center justify-center">
+                      <button className="w-6 h-6 bg-primary/10 text-primary rounded-full flex items-center justify-center" onClick={() => addActivity('plant')}>
                         <Link className="h-3 w-3" />
                       </button>
                     </div>
@@ -133,7 +133,7 @@ const Plants = () => {
   }
 
   return (
-    <div className="min-h-screen bg-background pb-20">
+    <div className="min-h-screen bg-background/10 pb-20 overflow-x-hidden">
       {/* Header */}
       <div className="px-6 pt-8 pb-6">
         <h1 className="font-heading text-2xl font-semibold text-foreground mb-2">
@@ -153,7 +153,7 @@ const Plants = () => {
             placeholder="Search plants and fungi..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full pl-10 pr-4 py-3 bg-card border border-border/20 rounded-xl text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary/30"
+            className="w-full pl-10 pr-4 py-3 bg-card/70 backdrop-blur-sm border border-border/20 rounded-xl text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary/30"
           />
         </div>
       </div>
@@ -188,7 +188,7 @@ const Plants = () => {
             <div 
               key={plant.id} 
               onClick={() => setSelectedPlant(plant)}
-              className="bg-card rounded-2xl p-4 border border-border/20 cursor-pointer hover:bg-card/80 transition-colors duration-200"
+              className="glass rounded-2xl p-4 cursor-pointer hover:bg-white/10 transition-colors duration-200"
             >
               <div className="flex items-start justify-between mb-3">
                 <div className="flex-1">

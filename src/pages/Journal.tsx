@@ -1,7 +1,8 @@
 import { useState } from 'react';
-import { Plus, Edit3, Trash2 } from 'lucide-react';
+import { Plus, Edit3, Trash2, Mic, MicOff } from 'lucide-react';
 import { journalEntries as initialEntries } from '@/data/seedData';
 import { JournalEntry } from '@/types';
+import { useRitual } from '@/context/RitualContext';
 
 const Journal = () => {
   const [entries, setEntries] = useState<JournalEntry[]>(initialEntries);
@@ -11,6 +12,49 @@ const Journal = () => {
     mood: 3 as 1 | 2 | 3 | 4 | 5,
     text: ''
   });
+  const { addActivity } = useRitual();
+  const [isRecording, setIsRecording] = useState(false);
+  const [recError, setRecError] = useState<string | null>(null);
+
+  // Voice-to-text (Web Speech API)
+  const toggleRecording = () => {
+    const SpeechRecognition = (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
+    if (!SpeechRecognition) {
+      setRecError('Voice input not supported on this device.');
+      return;
+    }
+    setRecError(null);
+
+    if (isRecording) {
+      (window as any).__anima_recognition?.stop();
+      setIsRecording(false);
+      return;
+    }
+
+    const recognition = new SpeechRecognition();
+    (window as any).__anima_recognition = recognition;
+    recognition.lang = 'en-US';
+    recognition.interimResults = true;
+    recognition.continuous = true;
+
+    recognition.onresult = (event: any) => {
+      let transcript = '';
+      for (let i = event.resultIndex; i < event.results.length; i++) {
+        transcript += event.results[i][0].transcript;
+      }
+      setFormData(prev => ({ ...prev, text: (prev.text + ' ' + transcript).trim() }));
+    };
+    recognition.onerror = () => {
+      setRecError('Voice input error. Try again or type instead.');
+      setIsRecording(false);
+    };
+    recognition.onend = () => {
+      setIsRecording(false);
+    };
+
+    recognition.start();
+    setIsRecording(true);
+  };
 
   const todayPrompt = "How do you want to show up today?";
 
@@ -35,6 +79,7 @@ const Journal = () => {
         updatedAt: new Date().toISOString()
       };
       setEntries(prev => [newEntry, ...prev]);
+      addActivity('journal');
     }
     
     setIsCreating(false);
@@ -50,7 +95,7 @@ const Journal = () => {
 
   if (isCreating || selectedEntry) {
     return (
-      <div className="min-h-screen bg-background pb-20 px-6 pt-8">
+      <div className="min-h-screen bg-background/10 pb-20 px-6 pt-8">
         <div className="max-w-2xl mx-auto">
           <div className="mb-6">
             <button
@@ -93,10 +138,27 @@ const Journal = () => {
 
           {/* Text Entry */}
           <div className="bg-card rounded-2xl p-6 mb-6 border border-border/20">
+            <div className="flex items-center justify-between mb-3">
+              <h3 className="font-medium text-foreground">Your words</h3>
+              <button
+                type="button"
+                onClick={toggleRecording}
+                className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-colors duration-200 ${isRecording ? 'bg-destructive text-destructive-foreground' : 'bg-primary text-primary-foreground'}`}
+              >
+                {isRecording ? (
+                  <span className="inline-flex items-center gap-1"><MicOff className="w-4 h-4" /> Stop</span>
+                ) : (
+                  <span className="inline-flex items-center gap-1"><Mic className="w-4 h-4" /> Speak</span>
+                )}
+              </button>
+            </div>
+            {recError && (
+              <p className="text-xs text-muted-foreground mb-2">{recError}</p>
+            )}
             <textarea
               value={formData.text}
               onChange={(e) => setFormData(prev => ({ ...prev, text: e.target.value }))}
-              placeholder="Share your thoughts..."
+              placeholder="Speak or type your reflection..."
               className="w-full h-32 bg-transparent border-none outline-none resize-none text-foreground placeholder:text-muted-foreground font-body"
             />
           </div>
@@ -114,7 +176,7 @@ const Journal = () => {
   }
 
   return (
-    <div className="min-h-screen bg-background pb-20">
+    <div className="min-h-screen bg-background/10 pb-20">
       {/* Header */}
       <div className="px-6 pt-8 pb-6">
         <div className="flex items-center justify-between mb-4">
@@ -135,7 +197,7 @@ const Journal = () => {
 
       {/* Today's Prompt */}
       <div className="px-6 mb-6">
-        <div className="bg-gradient-card rounded-2xl p-6 border border-border/20">
+        <div className="glass rounded-2xl p-6">
           <h3 className="font-heading text-lg font-medium text-foreground mb-2">
             Today's Reflection
           </h3>
@@ -158,7 +220,7 @@ const Journal = () => {
         </h3>
         <div className="space-y-4">
           {entries.map((entry) => (
-            <div key={entry.id} className="bg-card rounded-2xl p-4 border border-border/20">
+            <div key={entry.id} className="glass rounded-2xl p-4">
               <div className="flex items-start justify-between mb-2">
                 <div className="flex items-center gap-2">
                   <span className="text-xl">{moodEmojis[entry.mood - 1]}</span>

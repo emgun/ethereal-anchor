@@ -2,11 +2,14 @@ import { useState } from 'react';
 import { Play, Pause, Filter } from 'lucide-react';
 import { meditations } from '@/data/seedData';
 import { Meditation } from '@/types';
+import { useRitual } from '@/context/RitualContext';
+import { CinematicBackground } from '@/components/CinematicBackground';
 
 const Meditate = () => {
   const [selectedIntent, setSelectedIntent] = useState<string>('All');
   const [currentMeditation, setCurrentMeditation] = useState<Meditation | null>(null);
   const [isPlaying, setIsPlaying] = useState(false);
+  const { addActivity } = useRitual();
 
   const intents = ['All', 'Calm', 'Focus', 'Energy', 'Release'];
   
@@ -34,6 +37,7 @@ const Meditate = () => {
             onClick={() => {
               setIsPlaying(false);
               setCurrentMeditation(null);
+              addActivity('meditation');
             }}
             className="text-mist/80 hover:text-mist mb-4"
           >
@@ -85,15 +89,11 @@ const Meditate = () => {
   }
 
   return (
-    <div className="min-h-screen bg-background pb-20">
-      {/* Header */}
-      <div className="px-6 pt-8 pb-6">
-        <h1 className="font-heading text-2xl font-semibold text-foreground mb-2">
-          Meditate
-        </h1>
-        <p className="text-muted-foreground font-body">
-          Find your center with guided meditations
-        </p>
+    <div className="min-h-screen bg-background/10 pb-20">
+      {/* Minimal header without card backgrounds */}
+      <div className="px-6 pt-8 pb-4">
+        <h1 className="font-heading text-2xl font-semibold text-foreground mb-1">Meditate</h1>
+        <p className="text-muted-foreground font-body">Find your center.</p>
       </div>
 
       {/* Intent Filter */}
@@ -123,7 +123,7 @@ const Meditate = () => {
       <div className="px-6">
         <div className="grid gap-4">
           {filteredMeditations.map((meditation) => (
-            <div key={meditation.id} className="bg-card rounded-2xl p-4 border border-border/20">
+            <div key={meditation.id} className="glass rounded-2xl p-4">
               <div className="flex items-center justify-between">
                 <div className="flex-1">
                   <h3 className="font-heading text-lg font-medium text-foreground mb-1">
